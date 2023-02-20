@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Education extends PersonalInfo {
+public class Education {
     private String degree;
     private String fieldOfStudy;
     private String school;

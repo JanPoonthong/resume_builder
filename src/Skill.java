@@ -1,4 +1,4 @@
-public class Skill extends PersonalInfo {
+public class Skill {
     private String skillName;
     private int skillLevel;
 
