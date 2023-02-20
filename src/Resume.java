@@ -42,33 +42,37 @@ public class Resume {
         contentStream.showText("Phone: " + resume.getPersonalInfo().getPhoneNumber());
         contentStream.endText();
 
-        contentStream.setNonStrokingColor(Color.BLACK);
-        contentStream.beginText();
-        contentStream.newLineAtOffset(50, 650);
-        contentStream.showText("Work Experience");
-        contentStream.endText();
+        if (resume.getWorkExperience().get(0) != null ) {
+            int y_axis = 630;
+            contentStream.setNonStrokingColor(Color.BLACK);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(50, 650);
+            contentStream.showText("Work Experience");
+            contentStream.endText();
 
-        contentStream.setFont(font, 14);
-        contentStream.beginText();
-        contentStream.newLineAtOffset(50, 630);
-        for (WorkExperience exp: resume.getWorkExperience()) {
-            contentStream.showText("Title: " + exp.getJobTitle());
-        }
-        contentStream.endText();
+            for (WorkExperience exp : resume.getWorkExperience()) {
+                contentStream.setFont(font, 14);
+                contentStream.beginText();
+                contentStream.newLineAtOffset(50, y_axis);
+                contentStream.showText("Title: " + exp.getJobTitle());
+                contentStream.endText();
+                y_axis -= 20;
 
-        contentStream.beginText();
-        contentStream.newLineAtOffset(50, 610);
-        for (WorkExperience exp: resume.getWorkExperience()) {
-            contentStream.showText("Company: " + exp.getCompanyName());
-        }
-        contentStream.endText();
 
-        contentStream.beginText();
-        contentStream.newLineAtOffset(50, 590);
-        for (WorkExperience exp: resume.getWorkExperience()) {
-            contentStream.showText("Description: " + exp.getDescription());
+                contentStream.beginText();
+                contentStream.newLineAtOffset(50, y_axis);
+                contentStream.showText("Company: " + exp.getCompanyName());
+                contentStream.endText();
+                y_axis -= 20;
+
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(50, y_axis);
+                contentStream.showText("Description: " + exp.getDescription());
+                contentStream.endText();
+                y_axis -= 20;
+            }
         }
-        contentStream.endText();
 
         PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
                 document);

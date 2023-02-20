@@ -7,11 +7,19 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         PersonalInfo personalInfo = PersonalInfo.getInfo(scan);
-        WorkExperience workExperienceInfo = WorkExperience.getInfo(scan);
         Resume resume = new Resume();
+        System.out.print("Type 'done' to stop adding work experience; To continue type 'start': ");
+        String userExpConfirmation = scan.nextLine();
 
+        WorkExperience workExperienceInfo = null;
+
+        while (!userExpConfirmation.equals("done") && userExpConfirmation.equals("start")) {
+            workExperienceInfo = WorkExperience.getInfo(scan);
+            resume.addWorkExperience(workExperienceInfo);
+            System.out.print("Type 'done' to stop adding work experience; To continue type 'start': ");
+            userExpConfirmation = scan.nextLine();
+        }
         resume.addPersonalInfo(personalInfo);
-        resume.addWorkExperience(workExperienceInfo);
         Resume.createResume(resume);
 
     }

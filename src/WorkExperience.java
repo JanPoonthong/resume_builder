@@ -18,11 +18,11 @@ public class WorkExperience {
 
 
     public static WorkExperience getInfo(Scanner scan) {
-        System.out.print("Enter your job title: ");
-        String jobTitle = scan.nextLine();
-
         System.out.print("Enter your company name: ");
         String company = scan.nextLine();
+
+        System.out.print("Enter your job title: ");
+        String jobTitle = scan.nextLine();
 
         System.out.print("Enter your start date: ");
         String startDate = scan.nextLine();
