@@ -7,6 +7,11 @@ public class Education extends PersonalInfo {
     private Date startDate;
     private Date endDate;
 
+    public Education(String degree, String fieldOfStudy,
+                     String school, Date startDate, Date endDate) {
+
+    }
+
     public Date getEndDate() {
         return endDate;
     }

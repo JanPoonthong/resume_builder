@@ -14,17 +14,15 @@ public class ResumeBuilder {
         personalInfo = info;
     }
 
-    public void addEducation(List<Education> edu) {
-        education = edu;
+    public void addEducation(Education edu) {
+        education.add(edu);
     }
 
-    public void addSkill(List<Skill> skill) {
-        skills = skill;
+    public void addSkill(Skill skill) {
+        skills.add(skill);
     }
 
-    public void addWorkExperience(List<WorkExperience> exp) {
-        workExperience = exp;
+    public void addWorkExperience(WorkExperience exp) {
+        workExperience.add(exp);
     }
 }
-//
-
