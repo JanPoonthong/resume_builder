@@ -42,7 +42,7 @@ public class Resume {
         contentStream.showText("Phone: " + resume.getPersonalInfo().getPhoneNumber());
         contentStream.endText();
 
-        if (resume.getWorkExperience().get(0) != null) {
+        if (resume.getWorkExperience().size() > 0) {
             int y_axis = 630;
             contentStream.setNonStrokingColor(Color.BLACK);
             contentStream.beginText();
@@ -74,9 +74,12 @@ public class Resume {
             }
         }
 
+
         PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
                 document);
-        contentStream.drawImage(image, 500, 500, 120, 120);
+        final int width = 120;
+        final int height = 120;
+        contentStream.drawImage(image, 50, 750 + height, width, height);
 
         contentStream.close();
 
