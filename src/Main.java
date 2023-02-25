@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(System.in);
 
@@ -13,7 +12,7 @@ public class Main {
 
         WorkExperience workExperienceInfo = null;
 
-        while (!userExpConfirmation.equals("done") && userExpConfirmation.equals("start")) {
+        while (userExpConfirmation.equals("start")) {
             workExperienceInfo = WorkExperience.getInfo(scan);
             resume.addWorkExperience(workExperienceInfo);
             System.out.print("Type 'done' to stop adding work experience; To continue type 'start': ");

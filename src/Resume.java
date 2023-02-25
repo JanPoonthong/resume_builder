@@ -42,7 +42,7 @@ public class Resume {
         contentStream.showText("Phone: " + resume.getPersonalInfo().getPhoneNumber());
         contentStream.endText();
 
-        if (resume.getWorkExperience().get(0) != null ) {
+        if (resume.getWorkExperience().get(0) != null) {
             int y_axis = 630;
             contentStream.setNonStrokingColor(Color.BLACK);
             contentStream.beginText();
@@ -84,7 +84,10 @@ public class Resume {
         document.close();
     }
 
-    public void addPersonalInfo(PersonalInfo info) {personalInfo = info;}
+    public void addPersonalInfo(PersonalInfo info) {
+        personalInfo = info;
+    }
+
     public void addEducation(Education edu) {
         education.add(edu);
     }
@@ -108,5 +111,8 @@ public class Resume {
     public List<WorkExperience> getWorkExperience() {
         return workExperience;
     }
-    public PersonalInfo getPersonalInfo() {return personalInfo;}
+
+    public PersonalInfo getPersonalInfo() {
+        return personalInfo;
+    }
 }
