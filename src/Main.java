@@ -20,6 +20,5 @@ public class Main {
         }
         resume.addPersonalInfo(personalInfo);
         Resume.createResume(resume);
-
     }
 }
