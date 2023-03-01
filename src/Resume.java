@@ -80,13 +80,11 @@ public class Resume {
 
         PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
                 document);
-        final int width = 120;
-        final int height = 120;
-        contentStream.drawImage(image, 50, 750 + height, width, height);
+
+        contentStream.drawImage(image, 50, 630, WIDTH, HEIGHT);
 
         contentStream.close();
-
-        document.save(resume.getPersonalInfo().getFullName() + " Resume.pdf");
+        document.save(resume.getPersonalInfo().getFullName().replaceAll("//s+", "a") + "_resume.pdf");
         document.close();
     }
 
