@@ -16,15 +16,6 @@ public class Resume {
     private ArrayList<WorkExperience> workExperience = new ArrayList<WorkExperience>();
     private List<Skill> skills;
 
-
-    public static void displayImage(Resume resume, PDDocument document, PDPageContentStream contentStream, int posX,
-                                    int posY, int width, int height) throws IOException {
-        PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
-                document);
-        contentStream.drawImage(image, posX, posY, width, height);
-        contentStream.close();
-    }
-
     public static void createResume(Resume resume) throws IOException {
         final int WIDTH = 120;
         final int HEIGHT = 120;
@@ -90,10 +81,8 @@ public class Resume {
             }
         }
 
-
-
         contentStream.drawImage(PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
-                document), 450, 630, 120, 120);
+                document), 450, 600, 150, 150);
         contentStream.close();
 
         document.save(resume.getPersonalInfo().getFullName().replaceAll("\\s+", "") + "_resume.pdf");
