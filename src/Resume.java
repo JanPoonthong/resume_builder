@@ -17,6 +17,9 @@ public class Resume {
     private List<Skill> skills;
 
     public static void createResume(Resume resume) throws IOException {
+        final int WIDTH = 120;
+        final int HEIGHT = 120;
+
         PDDocument document = new PDDocument();
         PDPage page = new PDPage();
         document.addPage(page);
@@ -28,17 +31,17 @@ public class Resume {
         contentStream.setFont(font, 18);
         contentStream.setNonStrokingColor(Color.DARK_GRAY);
         contentStream.beginText();
-        contentStream.newLineAtOffset(50, 750);
+        contentStream.newLineAtOffset(50, 600);
         contentStream.showText("Name: " + resume.getPersonalInfo().getFullName());
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(50, 720);
+        contentStream.newLineAtOffset(50, 580);
         contentStream.showText("Email: " + resume.getPersonalInfo().getEmail());
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(50, 690);
+        contentStream.newLineAtOffset(50, 560);
         contentStream.showText("Phone: " + resume.getPersonalInfo().getPhoneNumber());
         contentStream.endText();
 
