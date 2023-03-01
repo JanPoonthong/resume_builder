@@ -40,6 +40,9 @@ public class Resume {
         contentStream.setFont(font, 18);
         contentStream.setNonStrokingColor(Color.DARK_GRAY);
 
+        contentStream.drawImage(PDImageXObject.createFromFile("assets/banner.png",
+                document), 0, 600, 700, 160);
+
         contentStream.beginText();
         contentStream.newLineAtOffset(50, 600);
         contentStream.showText("Name: " + resume.getPersonalInfo().getFullName());
@@ -87,13 +90,11 @@ public class Resume {
             }
         }
 
-        PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
-                document);
-        contentStream.drawImage(image, 50, 630, 120, 120);
-        contentStream.close();
 
-        // displayImage(resume, document, contentStream, 50, 630, 120, 120);
-        // displayImage(resume, document, contentStream, 50, 630, 120, 120);
+
+        contentStream.drawImage(PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
+                document), 450, 630, 120, 120);
+        contentStream.close();
 
         document.save(resume.getPersonalInfo().getFullName().replaceAll("\\s+", "") + "_resume.pdf");
         document.close();
