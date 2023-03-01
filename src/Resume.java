@@ -16,6 +16,15 @@ public class Resume {
     private ArrayList<WorkExperience> workExperience = new ArrayList<WorkExperience>();
     private List<Skill> skills;
 
+
+    public static void displayImage(Resume resume, PDDocument document, PDPageContentStream contentStream, int posX,
+                                    int posY, int width, int height) throws IOException {
+        PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
+                document);
+        contentStream.drawImage(image, posX, posY, width, height);
+        contentStream.close();
+    }
+
     public static void createResume(Resume resume) throws IOException {
         final int WIDTH = 120;
         final int HEIGHT = 120;
@@ -30,6 +39,7 @@ public class Resume {
 
         contentStream.setFont(font, 18);
         contentStream.setNonStrokingColor(Color.DARK_GRAY);
+
         contentStream.beginText();
         contentStream.newLineAtOffset(50, 600);
         contentStream.showText("Name: " + resume.getPersonalInfo().getFullName());
@@ -77,14 +87,15 @@ public class Resume {
             }
         }
 
-
         PDImageXObject image = PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
                 document);
-
-        contentStream.drawImage(image, 50, 630, WIDTH, HEIGHT);
-
+        contentStream.drawImage(image, 50, 630, 120, 120);
         contentStream.close();
-        document.save(resume.getPersonalInfo().getFullName().replaceAll("//s+", "a") + "_resume.pdf");
+
+        // displayImage(resume, document, contentStream, 50, 630, 120, 120);
+        // displayImage(resume, document, contentStream, 50, 630, 120, 120);
+
+        document.save(resume.getPersonalInfo().getFullName().replaceAll("\\s+", "") + "_resume.pdf");
         document.close();
     }
 
