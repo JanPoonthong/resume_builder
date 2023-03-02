@@ -28,25 +28,61 @@ public class Resume {
 
         PDFont font = PDType1Font.HELVETICA_BOLD;
 
-        contentStream.setFont(font, 18);
-        contentStream.setNonStrokingColor(Color.DARK_GRAY);
+        contentStream.setFont(font, 35);
+        contentStream.setNonStrokingColor(Color.BLACK);
 
         contentStream.drawImage(PDImageXObject.createFromFile("assets/banner.png",
-                document), 0, 600, 700, 160);
+                document), 0, 620, 700, 140);
+
+        contentStream.drawImage(PDImageXObject.createFromFile("assets/" + resume.getPersonalInfo().getProfileImagePath().substring(0, resume.getPersonalInfo().getProfileImagePath().lastIndexOf(".")) + ".png",
+                document), 490, 580, 120, 150);
+
+        contentStream.drawImage(PDImageXObject.createFromFile("assets/phone_icon.png",
+                document), 31, 585, 20, 20);
+
+        contentStream.drawImage(PDImageXObject.createFromFile("assets/mail_icon.png",
+                document), 30, 560, 20, 15);
+
+        contentStream.drawImage(PDImageXObject.createFromFile("assets/location_icon.png",
+                document), 30, 530, 20, 20);
+
+        contentStream.drawImage(PDImageXObject.createFromFile("assets/website_icon.png",
+                document), 30, 500, 20, 20);
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(50, 600);
-        contentStream.showText("Name: " + resume.getPersonalInfo().getFullName());
+        contentStream.newLineAtOffset(30, 710);
+        contentStream.showText(resume.getPersonalInfo().getFullName().toUpperCase());
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(50, 580);
-        contentStream.showText("Email: " + resume.getPersonalInfo().getEmail());
+        contentStream.setFont(PDType1Font.HELVETICA, 20);
+        contentStream.newLineAtOffset(30, 660);
+        contentStream.setCharacterSpacing(7);
+        contentStream.showText(resume.getPersonalInfo().getPosition().toUpperCase());
+        contentStream.endText();
+
+        contentStream.setCharacterSpacing(0);
+        contentStream.setFont(font, 16);
+
+        contentStream.beginText();
+        contentStream.setFont(font, 16);
+        contentStream.newLineAtOffset(60, 590);
+        contentStream.showText(resume.getPersonalInfo().getPhoneNumber());
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(50, 560);
-        contentStream.showText("Phone: " + resume.getPersonalInfo().getPhoneNumber());
+        contentStream.newLineAtOffset(60, 562);
+        contentStream.showText(resume.getPersonalInfo().getEmail());
+        contentStream.endText();
+
+        contentStream.beginText();
+        contentStream.newLineAtOffset(60, 535);
+        contentStream.showText(resume.getPersonalInfo().getLocation());
+        contentStream.endText();
+
+        contentStream.beginText();
+        contentStream.newLineAtOffset(60, 503);
+        contentStream.showText(resume.getPersonalInfo().getWebsite());
         contentStream.endText();
 
         if (resume.getWorkExperience().size() > 0) {
@@ -81,11 +117,10 @@ public class Resume {
             }
         }
 
-        contentStream.drawImage(PDImageXObject.createFromFile(resume.getPersonalInfo().getProfileImagePath(),
-                document), 450, 600, 150, 150);
+
         contentStream.close();
 
-        document.save(resume.getPersonalInfo().getFullName().replaceAll("\\s+", "") + "_resume.pdf");
+        document.save(resume.getPersonalInfo().getFullName().replaceAll("\\s+", "_") + "_resume.pdf");
         document.close();
     }
 
