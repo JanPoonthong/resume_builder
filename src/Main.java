@@ -12,7 +12,7 @@ public class Main {
         System.out.print("Type 'done' to stop adding work experience; To continue type 'start': ");
         String userExpConfirmation = scan.nextLine();
 
-        WorkExperience workExperienceInfo = null;
+        WorkExperience workExperienceInfo;
 
         while (userExpConfirmation.equals("start")) {
             workExperienceInfo = WorkExperience.getInfo(scan);
