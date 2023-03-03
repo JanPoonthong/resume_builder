@@ -1,4 +1,3 @@
-import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 public class PersonalInfo {
@@ -10,12 +9,13 @@ public class PersonalInfo {
     private String location;
 
     private String website;
+    private String bio;
 
     public PersonalInfo() {
     }
 
     public PersonalInfo(String fullName, String email, String phoneNumber,
-                        String profileImagePath, String position, String location, String website) {
+                        String profileImagePath, String position, String location, String website, String bio) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -23,6 +23,7 @@ public class PersonalInfo {
         this.position = position;
         this.location = location;
         this.website = website;
+        this.bio = bio;
     }
 
     public static PersonalInfo getInfo(Scanner scan) {
@@ -44,10 +45,13 @@ public class PersonalInfo {
         System.out.print("Enter your website: ");
         String website = scan.nextLine();
 
+        System.out.println("Enter your bio: ");
+        String bio = scan.nextLine();
+
         System.out.print("Enter the path of the image file: ");
         String profileImagePath = scan.nextLine();
         return new PersonalInfo(fullName, email, phoneNumber,
-                profileImagePath, position, location, website);
+                profileImagePath, position, location, website, bio);
     }
 
     public String getEmail() {
@@ -78,20 +82,7 @@ public class PersonalInfo {
         return profileImagePath;
     }
 
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-//
-//    public void setFullName(String fullName) {
-//        this.fullName = fullName;
-//    }
-//
-//    public void setPhoneNumber(String phoneNumber) {
-//        this.phoneNumber = phoneNumber;
-//    }
-//
-//    public void setProfileImagePath(String profileImagePath) {
-//        this.profileImagePath = profileImagePath;
-//    }
-
+    public String getBio() {
+        return bio;
+    }
 }
