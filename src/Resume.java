@@ -4,6 +4,8 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.commons.lang3.text.WordUtils;
+
 
 import java.awt.*;
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.List;
 public class Resume {
     private PersonalInfo personalInfo;
     private List<Education> education;
-    private ArrayList<WorkExperience> workExperience = new ArrayList<WorkExperience>();
+    private final ArrayList<WorkExperience> workExperience = new ArrayList<WorkExperience>();
     private List<Skill> skills;
 
     public static void createResume(Resume resume) throws IOException {
@@ -62,16 +64,16 @@ public class Resume {
         contentStream.endText();
 
         contentStream.setCharacterSpacing(0);
-        contentStream.setFont(font, 16);
+        contentStream.setNonStrokingColor(Color.GRAY);
 
         contentStream.beginText();
-        contentStream.setFont(font, 16);
-        contentStream.newLineAtOffset(60, 590);
+        contentStream.setFont(font, 12);
+        contentStream.newLineAtOffset(60, 591);
         contentStream.showText(resume.getPersonalInfo().getPhoneNumber());
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(60, 562);
+        contentStream.newLineAtOffset(60, 564);
         contentStream.showText(resume.getPersonalInfo().getEmail());
         contentStream.endText();
 
@@ -81,37 +83,86 @@ public class Resume {
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(60, 503);
+        contentStream.newLineAtOffset(60, 505);
         contentStream.showText(resume.getPersonalInfo().getWebsite());
         contentStream.endText();
 
-        if (resume.getWorkExperience().size() > 0) {
-            int y_axis = 630;
-            contentStream.setNonStrokingColor(Color.BLACK);
+//        contentStream.moveTo(50, 505);
+//        contentStream.lineTo(50, 600);
+//        contentStream.stroke();
+
+        contentStream.setNonStrokingColor(Color.BLACK);
+        contentStream.setFont(font, 22);
+        contentStream.setCharacterSpacing(7);
+
+        contentStream.beginText();
+        contentStream.newLineAtOffset(200, 450);
+        contentStream.showText("PROFILE");
+        contentStream.endText();
+
+        contentStream.setNonStrokingColor(Color.GRAY);
+        contentStream.setCharacterSpacing(0);
+        contentStream.setFont(font, 14);
+
+        contentStream.beginText();
+        contentStream.newLineAtOffset(200, 450);
+        contentStream.showText(resume.getPersonalInfo().getBio());
+        contentStream.endText();
+
+        String[] wrT;
+        String s;
+        String text = resume.getPersonalInfo().getBio();
+
+        wrT = WordUtils.uncapitalize()
+        wrT = WordUtils.wrap(text, 100).split("\\r?\\n");
+
+        for (int i=0; i< wrT.length; i++) {
             contentStream.beginText();
-            contentStream.newLineAtOffset(50, 650);
-            contentStream.showText("Work Experience");
+            contentStream.setFont(PDType1Font.HELVETICA, 10);
+            contentStream.newLineAtOffset(50,600-i*15);
+            s = wrT[i];
+            contentStream.showText(s);
+            contentStream.endText();
+        }
+
+
+        if (resume.getWorkExperience().size() > 0) {
+
+            contentStream.setNonStrokingColor(Color.BLACK);
+            contentStream.setFont(font, 22);
+            contentStream.setCharacterSpacing(7);
+
+            contentStream.beginText();
+            contentStream.newLineAtOffset(30, 450);
+            contentStream.showText("EXPERIENCE");
             contentStream.endText();
 
+            contentStream.setNonStrokingColor(Color.GRAY);
+            contentStream.setCharacterSpacing(0);
+
+            int y_axis = 420;
             for (WorkExperience exp : resume.getWorkExperience()) {
                 contentStream.setFont(font, 14);
+                contentStream.setNonStrokingColor(Color.BLACK);
                 contentStream.beginText();
-                contentStream.newLineAtOffset(50, y_axis);
-                contentStream.showText("Title: " + exp.getJobTitle());
+                contentStream.newLineAtOffset(30, y_axis);
+                contentStream.showText(exp.getJobTitle().toUpperCase());
+                contentStream.endText();
+                y_axis -= 20;
+
+
+                contentStream.setNonStrokingColor(Color.GRAY);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(30, y_axis);
+                contentStream.showText(exp.getCompanyName());
                 contentStream.endText();
                 y_axis -= 20;
 
 
                 contentStream.beginText();
-                contentStream.newLineAtOffset(50, y_axis);
-                contentStream.showText("Company: " + exp.getCompanyName());
-                contentStream.endText();
-                y_axis -= 20;
-
-
-                contentStream.beginText();
-                contentStream.newLineAtOffset(50, y_axis);
-                contentStream.showText("Description: " + exp.getDescription());
+                contentStream.newLineAtOffset(30, y_axis);
+                contentStream.showText(exp.getDescription());
                 contentStream.endText();
                 y_axis -= 20;
             }
