@@ -45,7 +45,7 @@ public class PersonalInfo {
         System.out.print("Enter your website: ");
         String website = scan.nextLine();
 
-        System.out.println("Enter your bio: ");
+        System.out.print("Enter your bio: ");
         String bio = scan.nextLine();
 
         System.out.print("Enter the path of the image file: ");

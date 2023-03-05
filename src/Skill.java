@@ -1,25 +1,20 @@
-public class Skill {
-    private String skillName;
-    private int skillLevel;
+import java.util.Scanner;
 
-    public Skill(String skillName, int skillLevel) {
+public class Skill {
+    private final String skillName;
+
+    public Skill(String skillName) {
         this.skillName = skillName;
-        this.skillLevel = skillLevel;
     }
 
-    public int getSkillLevel() {
-        return skillLevel;
+    public static Skill getInfo(Scanner scan) {
+        System.out.print("Enter skill: ");
+        String skill = scan.nextLine();
+
+        return new Skill(skill);
     }
 
     public String getSkillName() {
         return skillName;
     }
-
-//    public void setSkillLevel(int skillLevel) {
-//        this.skillLevel = skillLevel;
-//    }
-
-//    public void setSkillName(String skillName) {
-//        this.skillName = skillName;
-//    }
 }
