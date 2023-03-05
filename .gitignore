@@ -1,3 +1,4 @@
+assets/
 *.iml
 .idea
 out/
@@ -6,3 +7,6 @@ bin/
 *.pdf
 build/
 jars/
+*.jpg
+*.jpeg
+*.png

@@ -1,22 +1,33 @@
 import java.util.Date;
+import java.util.Scanner;
 
 public class Education {
     private String degree;
-    private String fieldOfStudy;
     private String school;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
 
-    public Education(String degree, String fieldOfStudy,
-                     String school, Date startDate, Date endDate) {
-
+    public Education(String degree,
+                     String school, String startDate) {
+    this.degree = degree;
+    this.school = school;
+    this.startDate = startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public static Education getInfo(Scanner scan) {
+        System.out.print("Enter degree Ex: (Secondary School, Bachelor of Technology): ");
+        String degree = scan.nextLine();
+
+        System.out.print("Enter school: ");
+        String school = scan.nextLine();
+
+        System.out.print("Enter your date Ex:(2016-2019): ");
+        String startDate = scan.nextLine();
+
+        return new Education(degree, school, startDate);
     }
 
-    public Date getStartDate() {
+
+    public String getStartDate() {
         return startDate;
     }
 
@@ -24,9 +35,6 @@ public class Education {
         return degree;
     }
 
-    public String getFieldOfStudy() {
-        return fieldOfStudy;
-    }
 
     public String getSchool() {
         return school;
@@ -36,19 +44,11 @@ public class Education {
         this.degree = degree;
     }
 
-    public void setFieldOfStudy(String fieldOfStudy) {
-        this.fieldOfStudy = fieldOfStudy;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public void setSchool(String school) {
         this.school = school;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 }
